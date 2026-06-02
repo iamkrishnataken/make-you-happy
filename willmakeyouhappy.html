@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey Cutie! 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background:#ffd6e7;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    color:gold;
+    animation:float linear infinite;
+    opacity:0.8;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-120px);
+    }
+}
+
+.container{
+    text-align:center;
+    z-index:10;
+    background:rgba(255,255,255,0.4);
+    backdrop-filter:blur(8px);
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    max-width:700px;
+    width:90%;
+}
+
+h1{
+    color:#d1006f;
+    font-size:2.5rem;
+    margin-bottom:35px;
+}
+
+#yesBtn{
+    background:#ff4fa3;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-size:20px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-right:20px;
+    transition:.3s;
+}
+
+#yesBtn:hover{
+    transform:scale(1.08);
+}
+
+#noBtn{
+    background:white;
+    color:#d1006f;
+    border:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-size:20px;
+    cursor:pointer;
+    font-weight:bold;
+    position:fixed;
+}
+
+#message{
+    display:none;
+    color:#c00065;
+    font-size:1.7rem;
+    line-height:1.7;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>💖 Hey Cutie! Did you steal my heart? 💖</h1>
+
+<button id="yesBtn">🌸 Yes, I did! 🌸</button>
+
+<button id="noBtn">No</button>
+
+<div id="message">
+Great, you can keep it! 💝🥰<br><br>
+
+✨ After all, you truly deserve that beautiful smile on your face! ✨<br><br>
+
+Keep shining and smiling cutieee!💝
+</div>
+
+</div>
+
+<script>
+
+/* Create Golden Hearts */
+for(let i=0;i<50;i++){
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💛";
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(15+Math.random()*25)+"px";
+    heart.style.animationDuration=(5+Math.random()*8)+"s";
+    heart.style.animationDelay=Math.random()*5+"s";
+
+    document.body.appendChild(heart);
+}
+
+/* Initial No Button Position */
+const noBtn=document.getElementById("noBtn");
+
+function placeInitialButton(){
+    noBtn.style.left=(window.innerWidth/2 + 120)+"px";
+    noBtn.style.top=(window.innerHeight/2 + 35)+"px";
+}
+
+placeInitialButton();
+
+/* Run Away Effect */
+noBtn.addEventListener("mouseenter",()=>{
+
+    const maxX=window.innerWidth-noBtn.offsetWidth-20;
+    const maxY=window.innerHeight-noBtn.offsetHeight-20;
+
+    const randomX=Math.random()*maxX;
+    const randomY=Math.random()*maxY;
+
+    noBtn.style.left=randomX+"px";
+    noBtn.style.top=randomY+"px";
+
+    const texts=[
+        "No 😜",
+        "Nice Try 😂",
+        "Catch Me 😆",
+        "Impossible 😏",
+        "Click Yes 🌸"
+    ];
+
+    noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];
+});
+
+/* Yes Button */
+document.getElementById("yesBtn").addEventListener("click",()=>{
+
+    document.getElementById("yesBtn").style.display="none";
+    document.getElementById("noBtn").style.display="none";
+
+    document.getElementById("message").style.display="block";
+});
+</script>
+
+</body>
+</html>
